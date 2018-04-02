@@ -37,4 +37,4 @@ app.get('/transactions/:from', (req, res) => {
 	})
 })
 
-app.listen(process.env.PORT || 80, () => console.log('App is listening on port!'))
+app.listen(process.env.PORT || 3000, () => console.log('App is listening on port 3000!'))
