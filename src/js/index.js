@@ -34,7 +34,7 @@ class App extends React.Component {
 					})
 				})))
 
-				fetch('http://localhost:3000/transactions/' + accounts[0])
+				fetch('/transactions/' + accounts[0])
 				.then(result => result.json())
 				.then((result) => {
 					self.setState({
@@ -119,7 +119,7 @@ class App extends React.Component {
 			})
 		})
 
-		fetch('http://localhost:3000/transactions/' + this.state.fromAccountAddress)
+		fetch('/transactions/' + this.state.fromAccountAddress)
 		.then(result => result.json())
 		.then((result) => {
 			this.setState({
@@ -145,11 +145,11 @@ class App extends React.Component {
 
 			var urlSuffix = '/kittenId/' + kittenId + '/tx/' + hash + '/from/' + this.state.fromAccountAddress + '/to/' + this.state.toAccountAddress;
 
-			fetch('http://localhost:3000/transfer/start' + urlSuffix)
+			fetch('/transfer/start' + urlSuffix)
 			console.log('transferring', hash);
 			this.waitForReceipt(hash, ((receipt) => {
 				if (receipt.status == '0x1') {
-					fetch('http://localhost:3000/transfer/success' + urlSuffix)
+					fetch('/transfer/success' + urlSuffix)
 					.then(() => {
 						// wait 5 more seconds after the receipt and then refresh
 						window.setInterval(() => {
@@ -158,7 +158,7 @@ class App extends React.Component {
 					})
 				}
 				else {
-					fetch('http://localhost:3000/transfer/fail' + urlSuffix)
+					fetch('/transfer/fail' + urlSuffix)
 				}
 				console.log('received', receipt)
 			}));

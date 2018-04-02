@@ -32495,7 +32495,7 @@ var App = function (_React$Component) {
 					});
 				});
 
-				fetch('http://localhost:3000/transactions/' + accounts[0]).then(function (result) {
+				fetch('/transactions/' + accounts[0]).then(function (result) {
 					return result.json();
 				}).then(function (result) {
 					self.setState({
@@ -32584,7 +32584,7 @@ var App = function (_React$Component) {
 				});
 			});
 
-			fetch('http://localhost:3000/transactions/' + this.state.fromAccountAddress).then(function (result) {
+			fetch('/transactions/' + this.state.fromAccountAddress).then(function (result) {
 				return result.json();
 			}).then(function (result) {
 				_this3.setState({
@@ -32615,18 +32615,18 @@ var App = function (_React$Component) {
 
 				var urlSuffix = '/kittenId/' + kittenId + '/tx/' + hash + '/from/' + _this4.state.fromAccountAddress + '/to/' + _this4.state.toAccountAddress;
 
-				fetch('http://localhost:3000/transfer/start' + urlSuffix);
+				fetch('/transfer/start' + urlSuffix);
 				console.log('transferring', hash);
 				_this4.waitForReceipt(hash, function (receipt) {
 					if (receipt.status == '0x1') {
-						fetch('http://localhost:3000/transfer/success' + urlSuffix).then(function () {
+						fetch('/transfer/success' + urlSuffix).then(function () {
 							// wait 5 more seconds after the receipt and then refresh
 							window.setInterval(function () {
 								self.refreshFromAndTo();
 							}, 5000);
 						});
 					} else {
-						fetch('http://localhost:3000/transfer/fail' + urlSuffix);
+						fetch('/transfer/fail' + urlSuffix);
 					}
 					console.log('received', receipt);
 				});
