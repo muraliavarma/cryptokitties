@@ -32621,7 +32621,7 @@ var App = function (_React$Component) {
 					if (receipt.status == '0x1') {
 						fetch('/transfer/success' + urlSuffix).then(function () {
 							// wait 5 more seconds after the receipt and then refresh
-							window.setInterval(function () {
+							window.setTimeout(function () {
 								self.refreshFromAndTo();
 							}, 5000);
 						});

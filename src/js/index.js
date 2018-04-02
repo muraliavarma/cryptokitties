@@ -152,7 +152,7 @@ class App extends React.Component {
 					fetch('/transfer/success' + urlSuffix)
 					.then(() => {
 						// wait 5 more seconds after the receipt and then refresh
-						window.setInterval(() => {
+						window.setTimeout(() => {
 							self.refreshFromAndTo()							
 						}, 5000)
 					})
